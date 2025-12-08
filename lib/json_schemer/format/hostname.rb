@@ -39,9 +39,16 @@ module JSONSchemer
       ARABIC_INDIC_DIGITS_REGEX = /[\u{0660}-\u{0669}]/.freeze
       ARABIC_EXTENDED_DIGITS_REGEX = /[\u{06F0}-\u{06F9}]/.freeze
 
+      MAX_A_LABEL_SIZE = 63
+      MAX_HOSTNAME_SIZE = 253
+
       def valid_hostname?(data)
-        data.split('.', -1).map do |a_label|
-          return false if a_label.size > 63
+        hostname_size = 0
+        data.split('.', -1).map do |label|
+          a_label = SimpleIDN.to_ascii(label)
+          return false if a_label.size > MAX_A_LABEL_SIZE
+          hostname_size += a_label.size + 1 # include separator
+          return false if hostname_size > MAX_HOSTNAME_SIZE
           u_label = SimpleIDN.to_unicode(a_label)
           # https://datatracker.ietf.org/doc/html/rfc5891#section-4.2.3.1
           return false if u_label.slice(2, 2) == '--'
