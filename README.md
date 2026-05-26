@@ -447,6 +447,8 @@ In the example above, custom error messsages are looked up using the following k
 
 ## OpenAPI
 
+Supports OpenAPI 3.0, 3.1, and 3.2. OpenAPI 3.2 uses the same JSON Schema dialect as 3.1, so both versions use the same validation codepath.
+
 ```ruby
 document = JSONSchemer.openapi({
   'openapi' => '3.1.0',
