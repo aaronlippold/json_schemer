@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Features
+
+- Add OpenAPI 3.2 support. OAS 3.2 uses the same JSON Schema dialect as 3.1 (no breaking changes), so the 3.1 codepath handles it correctly. Fixes #228.
+
 ## [2.5.0] - 2025-12-08
 
 ### Bug Fixes

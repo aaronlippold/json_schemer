@@ -72,6 +72,27 @@ class OpenAPITest < Minitest::Test
     'hungry' => 'kinda'
   }
 
+  def test_openapi_3_2_accepted
+    openapi = JSONSchemer.openapi({
+      'openapi' => '3.2.0',
+      'info' => { 'title' => 'Test', 'version' => '1.0' },
+      'paths' => {},
+      'components' => {
+        'schemas' => {
+          'Widget' => {
+            'type' => 'object',
+            'properties' => {
+              'name' => { 'type' => 'string' }
+            }
+          }
+        }
+      }
+    })
+    schema = openapi.schema('Widget')
+    assert(schema.valid?({ 'name' => 'hello' }))
+    refute(schema.valid?({ 'name' => 42 }))
+  end
+
   def test_discriminator_specification_example
     openapi = {
       'openapi' => '3.1.0',
