@@ -91,6 +91,7 @@ class OpenAPITest < Minitest::Test
     schema = openapi.schema('Widget')
     assert(schema.valid?({ 'name' => 'hello' }))
     refute(schema.valid?({ 'name' => 42 }))
+    assert(openapi.valid?, 'OpenAPI 3.2.0 document should pass meta schema validation')
   end
 
   def test_discriminator_specification_example

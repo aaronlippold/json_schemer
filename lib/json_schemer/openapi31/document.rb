@@ -109,7 +109,7 @@ module JSONSchemer
         'properties' => {
           'openapi' => {
             'type' => 'string',
-            'pattern' => '^3\.1\.\d+(-.+)?$'
+            'pattern' => '^3\.[12]\.\d+(-.+)?$'
           },
           'info' => {
             '$ref' => '#/$defs/info'
