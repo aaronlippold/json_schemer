@@ -4,7 +4,10 @@
 
 ### Features
 
-- Add OpenAPI 3.2 support. OAS 3.2 uses the same JSON Schema dialect as 3.1 (no breaking changes), so the 3.1 codepath handles it correctly. Fixes #228.
+- Add OpenAPI 3.2.0 support. Fixes #228.
+  - Version acceptance: `3.2.x` documents are accepted and routed through the 3.1 codepath (same JSON Schema dialect).
+  - Document schema: all new 3.2.0 structural fields are recognized by `openapi.valid?` — `$self` (OpenAPI Object), `name` (Server), `query` and `additionalOperations` (Path Item), `mediaTypes` (Components), `dataValue` and `serializedValue` (Example), `querystring` (Parameter `in` value).
+  - Schema validation: works identically to 3.1 (same dialect, same codepath).
 
 ## [2.5.0] - 2025-12-08
 
